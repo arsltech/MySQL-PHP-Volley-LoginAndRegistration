@@ -60,10 +60,18 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     progressDialog.dismiss();
-                    ed_email.setText("");
-                    ed_password.setText("");
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+
+                    if(response.equalsIgnoreCase("logged in successfully")){
+
+                        ed_email.setText("");
+                        ed_password.setText("");
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             },new Response.ErrorListener(){
 
